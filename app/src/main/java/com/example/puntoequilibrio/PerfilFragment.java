@@ -196,7 +196,7 @@ public class PerfilFragment extends Fragment {
                     UsuarioDto user = snapshot.getValue(UsuarioDto.class);
                     Log.d("msg usuarioDto", user.getEmpresa());
                     correo.setText(user.getCorreo().toString());
-                    usuario.setText(user.getNombre().toString());
+                    usuario.setText(user.getNombre().toString() +" "+user.getApellidoPaterno()+" "+user.getApellidoMaterno());
                     empresa.setText(user.getEmpresa());
                     ruc.setText(user.getRuc().toString());
                 }

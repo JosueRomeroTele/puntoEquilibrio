@@ -39,6 +39,8 @@ public class EditarPerfil extends AppCompatActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         this.setTitle("Actualizar Usuario");
 
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
         Log.d("msg user","llego a la otra vista");
         Intent intent = getIntent();
         usuario = (UsuarioDto) intent.getSerializableExtra("usuario");
@@ -86,7 +88,7 @@ public class EditarPerfil extends AppCompatActivity {
 
                 actualizarData(usuario);
                 finish();
-
+                return;
             }
         });
     }

@@ -135,11 +135,11 @@ public class PuntoEquilibrioFragment extends Fragment {
                                                     Log.d("msg cantidad ventas for",String.valueOf(ventas));
                                                     if (cvSnap.exists()){
                                                         ProductoDto proObtenid = cvSnap.getValue(ProductoDto.class);
-
+                                                        PuntoEquilibrioDto nuevo = new PuntoEquilibrioDto();
                                                         if (proObtenid.getUid_user().equals(mAuth.getCurrentUser().getUid())){
-                                                            puntoEquilibrioDto.setReferencia(proObtenid.getReferencia());
-                                                            puntoEquilibrioDto.setCantidadMes(proObtenid.getCantidad());
-
+                                                            nuevo.setReferencia(proObtenid.getReferencia());
+                                                            nuevo.setCantidadMes(proObtenid.getCantidad());
+                                                            Log.d("msg cant pro",proObtenid.getReferencia());
                                                             Log.d("msg cant pro",String.valueOf(proObtenid.getCantidad()));
                                                             Log.d("msg total pro",String.valueOf(ventas));
 
@@ -149,20 +149,20 @@ public class PuntoEquilibrioFragment extends Fragment {
                                                             System.out.println("probandao");
                                                             System.out.println(participacionObt);
 
-                                                            puntoEquilibrioDto.setParticipacion(participacionObt);
-                                                            puntoEquilibrioDto.setPrecio(proObtenid.getPrecio());
-                                                            puntoEquilibrioDto.setCostoVariable(proObtenid.getCostoVariable());
+                                                            nuevo.setParticipacion(participacionObt);
+                                                            nuevo.setPrecio(proObtenid.getPrecio());
+                                                            nuevo.setCostoVariable(proObtenid.getCostoVariable());
 
                                                             double margenDisObt = proObtenid.getPrecio()-proObtenid.getCostoVariable() ;
                                                             Log.d("msg margenDisObt",String.valueOf(margenDisObt));
-                                                            puntoEquilibrioDto.setMargenDistribucion(margenDisObt);
+                                                            nuevo.setMargenDistribucion(margenDisObt);
 
-                                                            double margPondeObt = puntoEquilibrioDto.getMargenDistribucion()*puntoEquilibrioDto.getParticipacion();
-                                                            puntoEquilibrioDto.setMargenPonderado(margPondeObt);
+                                                            double margPondeObt = nuevo.getMargenDistribucion()*nuevo.getParticipacion();
+                                                            nuevo.setMargenPonderado(margPondeObt);
 
                                                             margenPonderadoTotal += margPondeObt;
                                                             Log.d("msg MArg ind", String.valueOf(margenPonderadoTotal));
-                                                            listaPuntoEquilibrio.add(puntoEquilibrioDto);
+                                                            listaPuntoEquilibrio.add(nuevo);
                                                         }
 
                                                     }
@@ -172,7 +172,8 @@ public class PuntoEquilibrioFragment extends Fragment {
                                                 System.out.println(listaPuntoEquilibrio);
                                                 //punto equilibrio
                                                 for(PuntoEquilibrioDto peSnap : listaPuntoEquilibrio){
-
+                                                    System.out.println(peSnap.getReferencia() + " " + peSnap.getParticipacion());
+                                                   // System.out.println(peSnap.getReferencia() + " " + peSnap.getParticipacion());
                                                     //puntoEquilibrio cantidad
                                                     double pEquiCantidad = (montoTotal*peSnap.getMargenPonderado())/margenPonderadoTotal;
                                                     peSnap.setPtoEquilibrioCantidad((int) pEquiCantidad);

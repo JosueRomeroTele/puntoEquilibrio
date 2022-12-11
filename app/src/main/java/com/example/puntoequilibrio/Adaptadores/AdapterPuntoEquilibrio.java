@@ -16,6 +16,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DecimalFormat;
+
 public class AdapterPuntoEquilibrio extends RecyclerView.Adapter<AdapterPuntoEquilibrio.PuntoEquilibrioViewHolder> {
 
     private PuntoEquilibrioDto[] listaPuntoEquilibrio;
@@ -45,10 +47,15 @@ public class AdapterPuntoEquilibrio extends RecyclerView.Adapter<AdapterPuntoEqu
         TextView porcePondePE = holder.itemView.findViewById(R.id.id_puntEquiMargenPon);
         TextView porcePartiPE = holder.itemView.findViewById(R.id.id_puntEquiPorcentaParti);
 
+        double numero1 = 3.3f;
+        DecimalFormat formato1 = new DecimalFormat("#.00");
+        String uno = formato1.format(numero1);
+
         refePE.setText(puntoEquilibrioDto.getReferencia());
-        cantidadPE.setText(String.valueOf(puntoEquilibrioDto.getPtoEquilibrioCantidad()));
-        porcePondePE.setText(String.valueOf(puntoEquilibrioDto.getMargenPonderado()));
-        porcePartiPE.setText(String.valueOf(puntoEquilibrioDto.getParticipacion()));
+
+        cantidadPE.setText("Pt.Equilibrio Cantidad : " + String.valueOf(puntoEquilibrioDto.getPtoEquilibrioCantidad()));
+        porcePondePE.setText("Margen Ponderado : "+String.valueOf(puntoEquilibrioDto.getMargenPonderado()));
+        porcePartiPE.setText("% Participacion : "+String.valueOf(puntoEquilibrioDto.getParticipacion()*10));
 
 
 

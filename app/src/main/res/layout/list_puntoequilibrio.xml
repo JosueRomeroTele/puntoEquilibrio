@@ -20,7 +20,7 @@
             android:id="@+id/imagen_cv_producto"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/img">
+            android:src="@drawable/equilibrio">
 
         </ImageView>
 
