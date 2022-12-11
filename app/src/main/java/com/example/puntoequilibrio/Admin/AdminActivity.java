@@ -9,17 +9,25 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
 
 import com.example.puntoequilibrio.PerfilFragment;
 import com.example.puntoequilibrio.R;
+import com.example.puntoequilibrio.constantes.Constante;
+import com.example.puntoequilibrio.dto.UsuarioDto;
 import com.example.puntoequilibrio.empresario.Fragments.CostoVariablesFragment;
 import com.example.puntoequilibrio.empresario.Fragments.CostosFijosFragment;
 import com.example.puntoequilibrio.empresario.Fragments.PuntoEquilibrioFragment;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AdminActivity extends AppCompatActivity {
 
@@ -87,6 +95,27 @@ public class AdminActivity extends AppCompatActivity {
                 return true;
             }
         });
+
+        firebaseDatabase.getReference().child(Constante.DB_USUARIOS).child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    Log.d("msg header", "ingreso a la ada");
+                    UsuarioDto user = snapshot.getValue(UsuarioDto.class);
+                    View header = nav.getHeaderView(0);
+                    //textNameNavUser
+                    TextView textUserHeader = header.findViewById(R.id.textNameNavUser);
+                    textUserHeader.setText(user.getNombre() + " " + user.getApellidoPaterno() + " "+user.getApellidoMaterno());
+                }
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
 
