@@ -17,11 +17,16 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.puntoequilibrio.R;
+import com.example.puntoequilibrio.constantes.Constante;
 import com.example.puntoequilibrio.dto.ProductoDto;
+import com.example.puntoequilibrio.dto.UsuarioDto;
 import com.example.puntoequilibrio.empresario.AgregarCostoVariableActivity;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
@@ -72,17 +77,35 @@ public class AdapterCostoVariable extends RecyclerView.Adapter<AdapterCostoVaria
         cantidadPro.setText("Cantidad : " + Integer.valueOf(costoVariable.getCantidad()));
 
 
-        // 3. onClick para ir a editar
-        CardView constraintLayout = holder.itemView.findViewById(R.id.constraintProducto);
-
-        constraintLayout.setOnClickListener(new View.OnClickListener() {
+        mDatabase.child(Constante.DB_USUARIOS).child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
             @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, AgregarCostoVariableActivity.class);
-                intent.putExtra("producto", costoVariable);
-                context.startActivity(intent);
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    UsuarioDto user_2 = snapshot.getValue(UsuarioDto.class);
+                    if (user_2.getHabilitado()){
+                        // 3. onClick para ir a editar
+                        CardView constraintLayout = holder.itemView.findViewById(R.id.constraintProducto);
+
+
+                        constraintLayout.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intent = new Intent(context, AgregarCostoVariableActivity.class);
+                                intent.putExtra("producto", costoVariable);
+                                context.startActivity(intent);
+                            }
+                        });
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
             }
         });
+
 
     }
 

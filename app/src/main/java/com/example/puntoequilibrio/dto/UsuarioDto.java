@@ -14,11 +14,12 @@ public class UsuarioDto implements Serializable {
     public String correo;
     public Boolean habilitado;
     public String uidUser;
+    public String photoUser;
 
 
     public UsuarioDto(){}
 
-    public UsuarioDto(String ruc, String nombre, String apellidoPaterno, String apellidoMaterno, int dni, String rol, Boolean habilitado,String correo,String empresa,String uidUser) {
+    public UsuarioDto(String ruc, String nombre, String apellidoPaterno, String apellidoMaterno, int dni, String rol, Boolean habilitado,String correo,String empresa,String uidUser,String photoUser) {
         this.ruc = ruc;
         this.nombre = nombre;
         this.apellidoPaterno = apellidoPaterno;
@@ -29,6 +30,7 @@ public class UsuarioDto implements Serializable {
         this.correo = correo;
         this.empresa=empresa;
         this.uidUser=uidUser;
+        this.photoUser=photoUser;
     }
 
     public String getUidUser() {

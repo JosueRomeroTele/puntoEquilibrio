@@ -19,6 +19,7 @@ import com.example.puntoequilibrio.Interface.iComunicaFragments;
 import com.example.puntoequilibrio.R;
 import com.example.puntoequilibrio.constantes.Constante;
 import com.example.puntoequilibrio.dto.ProductoDto;
+import com.example.puntoequilibrio.dto.UsuarioDto;
 import com.example.puntoequilibrio.empresario.AgregarCostoVariableActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -58,6 +59,26 @@ public class CostoVariablesFragment extends Fragment {
 
 
         btn_add = view.findViewById(R.id.btn_agregar_costoVariable);
+
+
+        mDatabase.child(Constante.DB_USUARIOS).child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    UsuarioDto user_2 = snapshot.getValue(UsuarioDto.class);
+                    if (!user_2.getHabilitado()){
+                        btn_add.setVisibility(view.INVISIBLE);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         btn_add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

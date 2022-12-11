@@ -54,8 +54,8 @@ public class AdapterPuntoEquilibrio extends RecyclerView.Adapter<AdapterPuntoEqu
         refePE.setText(puntoEquilibrioDto.getReferencia());
 
         cantidadPE.setText("Pt.Equilibrio Cantidad : " + String.valueOf(puntoEquilibrioDto.getPtoEquilibrioCantidad()));
-        porcePondePE.setText("Margen Ponderado : "+String.valueOf(puntoEquilibrioDto.getMargenPonderado()));
-        porcePartiPE.setText("% Participacion : "+String.valueOf(puntoEquilibrioDto.getParticipacion()*10));
+        porcePondePE.setText("Margen Ponderado : "+formato1.format(puntoEquilibrioDto.getMargenPonderado()));
+        porcePartiPE.setText("% Participacion : "+formato1.format(puntoEquilibrioDto.getParticipacion()*10));
 
 
 

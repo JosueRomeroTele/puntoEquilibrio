@@ -117,11 +117,10 @@ public class PuntoEquilibrioFragment extends Fragment {
                                                 for (DataSnapshot cvSnap : snapshot.getChildren()){
                                                     if (cvSnap.exists()){
                                                         ProductoDto proObtenid = cvSnap.getValue(ProductoDto.class);
+                                                        if (proObtenid.getUid_user().equals(mAuth.getCurrentUser().getUid())){
+                                                            ventas += proObtenid.getCantidad();
+                                                        }
 
-                                                        Log.d("msg variable",String.valueOf(proObtenid.getCantidad()));
-                                                        Log.d("msg variableMo",String.valueOf(montoTotal));
-
-                                                        ventas += proObtenid.getCantidad();
                                                     }
                                                 }
 
@@ -139,15 +138,13 @@ public class PuntoEquilibrioFragment extends Fragment {
                                                         if (proObtenid.getUid_user().equals(mAuth.getCurrentUser().getUid())){
                                                             nuevo.setReferencia(proObtenid.getReferencia());
                                                             nuevo.setCantidadMes(proObtenid.getCantidad());
-                                                            Log.d("msg cant pro",proObtenid.getReferencia());
+                                                            Log.d("msg pro",proObtenid.getReferencia());
                                                             Log.d("msg cant pro",String.valueOf(proObtenid.getCantidad()));
-                                                            Log.d("msg total pro",String.valueOf(ventas));
+                                                            Log.d("msg ventaTotal pro",String.valueOf(ventasTotales));
 
-                                                            double participacionObt = ( (double)proObtenid.getCantidad()/ventasTotales )*100;
+                                                            double participacionObt = ( (double)proObtenid.getCantidad()/ventasTotales )*10;
 
                                                             Log.d("msg participacio pro",String.valueOf(participacionObt));
-                                                            System.out.println("probandao");
-                                                            System.out.println(participacionObt);
 
                                                             nuevo.setParticipacion(participacionObt);
                                                             nuevo.setPrecio(proObtenid.getPrecio());
@@ -157,8 +154,9 @@ public class PuntoEquilibrioFragment extends Fragment {
                                                             Log.d("msg margenDisObt",String.valueOf(margenDisObt));
                                                             nuevo.setMargenDistribucion(margenDisObt);
 
-                                                            double margPondeObt = nuevo.getMargenDistribucion()*nuevo.getParticipacion();
+                                                            double margPondeObt = nuevo.getMargenDistribucion()*nuevo.getParticipacion()*10;
                                                             nuevo.setMargenPonderado(margPondeObt);
+                                                            Log.d("msg margenPondeObt",String.valueOf(margenDisObt));
 
                                                             margenPonderadoTotal += margPondeObt;
                                                             Log.d("msg MArg ind", String.valueOf(margenPonderadoTotal));

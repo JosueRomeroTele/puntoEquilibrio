@@ -23,11 +23,15 @@ import com.example.puntoequilibrio.EditarPerfil;
 import com.example.puntoequilibrio.constantes.Constante;
 import com.example.puntoequilibrio.dto.GastosDto;
 import com.example.puntoequilibrio.R;
+import com.example.puntoequilibrio.dto.UsuarioDto;
 import com.example.puntoequilibrio.empresario.EditarCostoFijoActivity;
 import com.example.puntoequilibrio.empresario.Fragments.AgregarCostoFijoFragment;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class AdapterCostoFijo extends RecyclerView.Adapter<AdapterCostoFijo.CostoFijoViewHolder> {
 
@@ -75,6 +79,25 @@ public class AdapterCostoFijo extends RecyclerView.Adapter<AdapterCostoFijo.Cost
         textGasto.setText("Gasto : " + costoFijo.getGasto());
         textMonto.setText("Monto : " + String.valueOf(costoFijo.getMonto()));
         btn_edit = holder.itemView.findViewById(R.id.id_editar_cf);
+
+        mDatabase.child(Constante.DB_USUARIOS).child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    UsuarioDto user_2 = snapshot.getValue(UsuarioDto.class);
+                    if (!user_2.getHabilitado()){
+                        btn_delete.setVisibility(View.INVISIBLE);
+                        btn_edit.setVisibility(View.INVISIBLE);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         btn_delete.setOnClickListener(new View.OnClickListener() {
             @Override

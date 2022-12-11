@@ -61,7 +61,7 @@ public class EditarPerfil extends AppCompatActivity {
 
         nombre.setText(usuario.getNombre().toString().trim());
         apelPa.setText(usuario.getApellidoPaterno());
-        apelMa.setText(usuario.getApellidoPaterno());
+        apelMa.setText(usuario.getApellidoMaterno());
         dni.setText(String.valueOf(usuario.getDni()));
         ruc.setText(usuario.getRuc());
         correo.setText(usuario.getCorreo());

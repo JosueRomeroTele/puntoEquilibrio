@@ -22,6 +22,7 @@ import com.example.puntoequilibrio.Adaptadores.AdapterCostoFijo;
 import com.example.puntoequilibrio.R;
 import com.example.puntoequilibrio.constantes.Constante;
 import com.example.puntoequilibrio.dto.GastosDto;
+import com.example.puntoequilibrio.dto.UsuarioDto;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -61,6 +62,25 @@ public class CostosFijosFragment extends Fragment {
 
 
         btn_add = view.findViewById(R.id.btn_add_costoFijo);
+
+        mDatabase.child(Constante.DB_USUARIOS).child(mAuth.getCurrentUser().getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    UsuarioDto user_2 = snapshot.getValue(UsuarioDto.class);
+                    if (!user_2.getHabilitado()){
+                        btn_add.setVisibility(view.INVISIBLE);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
         btn_add.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("ResourceType")
             @Override

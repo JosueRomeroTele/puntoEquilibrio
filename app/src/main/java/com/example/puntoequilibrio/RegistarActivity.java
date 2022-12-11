@@ -77,7 +77,7 @@ public class RegistarActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                     UsuarioDto usuarioDto = new UsuarioDto(rucUser,nombreUser,paternoUser,maternoUser,Integer.valueOf(dniUser),Constante.ROL_EMPRESA,Constante.EMPRESA_HABILITADO,correoUser,empresaUser,
-                            mAuth.getCurrentUser().getUid());
+                            mAuth.getCurrentUser().getUid(),"");
                     FirebaseDatabase.getInstance().getReference(Constante.DB_USUARIOS)
                             .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                             .setValue(usuarioDto).addOnCompleteListener(new OnCompleteListener<Void>() {

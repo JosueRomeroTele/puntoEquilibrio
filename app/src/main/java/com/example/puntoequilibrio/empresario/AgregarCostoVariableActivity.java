@@ -76,13 +76,21 @@ public class AgregarCostoVariableActivity extends AppCompatActivity {
                     String precioCv = precio.getText().toString().trim();
                     String costoCv = costoVariable.getText().toString().trim();
 
-                    if (referenciaCv.isEmpty() && cantidadCv.isEmpty() && precioCv.isEmpty() && costoCv.isEmpty()){
-                        Toast.makeText(getApplicationContext(),"Todos los campos son obligatorios",Toast.LENGTH_LONG).show() ;
+                    double preci = Double.parseDouble(precioCv);
+                    double costo = Double.parseDouble(costoCv);
+
+                    if (preci>costo){
+                        if (referenciaCv.isEmpty() && cantidadCv.isEmpty() && precioCv.isEmpty() && costoCv.isEmpty()){
+                            Toast.makeText(getApplicationContext(),"Todos los campos son obligatorios",Toast.LENGTH_LONG).show() ;
+                        }else{
+
+                            agregarCostoVariable(referenciaCv,cantidadCv,precioCv,costoCv);
+
+                        }
                     }else{
-
-                        agregarCostoVariable(referenciaCv,cantidadCv,precioCv,costoCv);
-
+                        Toast.makeText(getApplicationContext(),"El precio debe ser mayor al costo",Toast.LENGTH_LONG).show() ;
                     }
+
 
                 }
             });
@@ -94,9 +102,14 @@ public class AgregarCostoVariableActivity extends AppCompatActivity {
             btn_dele_cv.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    mDatabase.child(Constante.BD_COSTOS_VARIABLES).child(producto.getIdProducto()).removeValue();
-                    Toast.makeText(AgregarCostoVariableActivity.this,"Se elimino registro exitosamente",Toast.LENGTH_LONG).show();
-                    finish();
+
+
+                        mDatabase.child(Constante.BD_COSTOS_VARIABLES).child(producto.getIdProducto()).removeValue();
+                        Toast.makeText(AgregarCostoVariableActivity.this,"Se elimino registro exitosamente",Toast.LENGTH_LONG).show();
+                        finish();
+
+
+
                 }
             });
 
@@ -114,8 +127,19 @@ public class AgregarCostoVariableActivity extends AppCompatActivity {
                     producto.setPrecio(Double.valueOf(precioCv));
                     producto.setCostoVariable(Double.valueOf(costoCv));
 
-                    actualizarData(producto);
-                    finish();
+
+                    double preci = Double.parseDouble(precioCv);
+                    double costo = Double.parseDouble(costoCv);
+
+                    if (preci>costo){
+                        actualizarData(producto);
+                        finish();
+                    }else{
+                        Toast.makeText(AgregarCostoVariableActivity.this,"El precio debe ser mayor al costo",Toast.LENGTH_LONG).show();
+                    }
+
+
+
                 }
             });
         }

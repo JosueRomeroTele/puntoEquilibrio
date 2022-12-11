@@ -106,6 +106,7 @@ public class PerfilFragment extends Fragment {
                 startActivityForResult(intent, COD_SEL_IMAGE);
             }
         });
+
         editar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -144,11 +145,11 @@ public class PerfilFragment extends Fragment {
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+
         if (resultCode == Activity.RESULT_OK){
             if (resultCode==COD_SEL_IMAGE){
                 imagenUrl = data.getData();
-
+                Log.d("msg ima",imagenUrl.toString());
                 String routeStoragePhoto = storagePath + mAuth.getCurrentUser().getUid();
                 StorageReference reference = storageReference.child(routeStoragePhoto);
 
@@ -162,6 +163,7 @@ public class PerfilFragment extends Fragment {
                                 uriTask.addOnSuccessListener(new OnSuccessListener<Uri>() {
                                     @Override
                                     public void onSuccess(Uri uri) {
+                                        Log.d("msg / uri imagen", uri.toString());
                                         String urlImagen = uri.toString();
                                         Toast.makeText(getActivity(), "Imagen subida correctamente", Toast.LENGTH_LONG).show();
 
@@ -181,6 +183,8 @@ public class PerfilFragment extends Fragment {
                 });
             }
         }
+
+        super.onActivityResult(requestCode, resultCode, data);
     }
 
     private void cargarDatos() {
