@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_perfil_admin"
+        android:title="Perfil"
+        android:icon="@drawable/ic_user">
+
+    </item>
+    <item android:id="@+id/nav_Empresarios"
+        android:title="Empresarios"
+        android:icon="@drawable/ic_money">
+
+    </item>
+
+
+</menu>

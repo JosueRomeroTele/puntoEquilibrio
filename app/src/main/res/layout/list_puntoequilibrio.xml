@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="3dp"
+    app:cardUseCompatPadding="true">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:layout_margin="10dp"
+        >
+
+        <ImageView
+            android:id="@+id/imagen_cv_producto"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/img">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/id_puntEquiCantidadReferencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toEndOf="@+id/imagen_cv_producto"
+            android:layout_toRightOf="@+id/imagen_cv_producto"
+            android:text="Nombre producto"
+            android:textSize="20sp"
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/id_puntEquiCantidad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_puntEquiCantidadReferencia"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/imagen_cv_producto"
+            android:layout_toRightOf="@+id/imagen_cv_producto"
+            android:text="Punto Equilibrio (Cant.) : "
+            android:textStyle="bold">
+
+        </TextView>
+
+        <TextView
+            android:id="@+id/id_puntEquiMargenPon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_puntEquiCantidad"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/imagen_cv_producto"
+            android:layout_toRightOf="@+id/imagen_cv_producto"
+            android:text="Porcentaje ponderado"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/id_puntEquiPorcentaParti"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/id_puntEquiMargenPon"
+            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/imagen_cv_producto"
+            android:layout_toRightOf="@+id/imagen_cv_producto"
+            android:text="Porcentaje de participacion"
+            android:textStyle="bold" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

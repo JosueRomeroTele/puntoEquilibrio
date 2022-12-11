@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".empresario.Fragments.ProductosDetalleFragment"
+    android:orientation="vertical"
+    android:paddingTop="60dp">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/titulo_fragment_detalle_producto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Detalle Producto"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        android:gravity="center">
+
+    </TextView>
+    <ImageView
+        android:id="@+id/imagen_producto_detalle"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:src="@drawable/ic_shopping"
+        android:layout_gravity="center"
+        android:paddingTop="10dp">
+    </ImageView>
+    <TextView
+        android:id="@+id/titulo_producto_detalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre Producto :"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:layout_marginLeft="10dp">
+
+    </TextView>
+    <TextView
+        android:id="@+id/nombre_producto_detalle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre Producto :"
+        android:textSize="30sp"
+        android:gravity="center">
+
+    </TextView>
+
+   </LinearLayout>

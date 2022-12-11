@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "865838377053",
+    "project_id": "puntoequilibrio-d3cb7",
+    "storage_bucket": "puntoequilibrio-d3cb7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:865838377053:android:5243195f0551d4fc9745b4",
+        "android_client_info": {
+          "package_name": "com.example.puntoequilibrio"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "865838377053-eekl1ubfhaajgmr657ru77gorptj8rbo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC0LiyscWFKjR-J0MBBubmTzO1zDdK44LE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "865838377053-eekl1ubfhaajgmr657ru77gorptj8rbo.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

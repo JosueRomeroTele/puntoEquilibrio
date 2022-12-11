@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/nav_perfil"
+        android:title="Perfil"
+        android:icon="@drawable/ic_user">
+
+    </item>
+    <item android:id="@+id/nav_costosFijos"
+        android:title="Costos Fijos"
+        android:icon="@drawable/ic_money">
+
+    </item>
+    <item android:id="@+id/nav_costosVariables"
+        android:title="Costo Variables"
+        android:icon="@drawable/ic_shopping">
+
+    </item>
+
+    <item android:id="@+id/nav_puntoEquilibrio"
+        android:title="Punto Equilibrio"
+        android:icon="@drawable/ic_shopping">
+
+    </item>
+
+</menu>
